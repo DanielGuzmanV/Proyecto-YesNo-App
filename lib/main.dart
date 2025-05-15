@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yesno_app/config/theme/app_theme.dart';
+import 'package:yesno_app/presentacion/chat/chat_screen.dart';
 
 void main() {
   return runApp(const MyApp());
@@ -15,18 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Yes-No_App',
       theme: ClassAppTheme(seleccionColor: 6).temasApp(),
 
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-
-        body: Center(
-          child: FilledButton.tonal(
-            onPressed:(){}, 
-            child: const Text('Presina aqui'),
-          )
-        ),
-      ),
+      home: const ChatScreen(),
       
     );
 
