@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yesno_app/presentacion/widgets/my_message.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -41,7 +42,7 @@ class _ChatView extends StatelessWidget {
             Expanded(child: ListView.builder(
               itemCount: 50,
               itemBuilder: (context, index) {
-                return Text('El indice es $index');
+                return const MyMessage();
               },
             )),
         
