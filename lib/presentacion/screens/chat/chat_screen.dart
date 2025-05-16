@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yesno_app/presentacion/widgets/my_message.dart';
+import 'package:yesno_app/presentacion/widgets/chat/doc_message.dart';
+import 'package:yesno_app/presentacion/widgets/chat/my_message.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -40,13 +41,15 @@ class _ChatView extends StatelessWidget {
 
           children: [
             Expanded(child: ListView.builder(
-              itemCount: 50,
+              itemCount: 30,
               itemBuilder: (context, index) {
-                return const MyMessage();
+                return (index % 2 == 0)
+                ? const MyMessage()
+                : const DocMessage();
               },
             )),
         
-            const Text('Enviar mensajes')
+            const Text('Enviar mensajes'),
           ],  
 
         ),
@@ -54,3 +57,15 @@ class _ChatView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
