@@ -34,7 +34,7 @@ class ChatProvider extends ChangeNotifier{
     messageList.add(newMessage);
 
     if(smsText.endsWith('?')) {
-      DoctorMessageReply();
+      doctorMessageReply();
     }
 
     // Notificamos los cambios:
@@ -43,8 +43,13 @@ class ChatProvider extends ChangeNotifier{
   }
 
   // Metodo para la respuesta del Doctor con una imagen:
-  Future<void> DoctorMessageReply() async {
+  Future<void> doctorMessageReply() async {
     final docSms = await getYesNoAnswer.getAnswer();
+    messageList.add(docSms);
+    notifyListeners();
+
+    moveScrollBottom();
+
   }
 
 
