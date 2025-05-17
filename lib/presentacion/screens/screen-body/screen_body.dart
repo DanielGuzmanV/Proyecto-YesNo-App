@@ -28,10 +28,10 @@ class ScreenBody extends StatelessWidget {
             itemBuilder: (context, index) {
 
               final messageValues = chatProviderChange.messageList[index];
-
+              
               return (messageValues.fromWho == EnumFromWho.smsDoctor) 
               ? const DocMessage()
-              : const MyMessage();
+              : MyMessage(changeMessage: messageValues,);
             },
           )),
 
