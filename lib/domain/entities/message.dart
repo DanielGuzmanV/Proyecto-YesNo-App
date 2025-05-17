@@ -12,7 +12,7 @@ class ClassMessage {
 }
 
 enum EnumFromWho {
-  mine,
-  doctor
+  smsMe,
+  smsDoctor
 }
 
