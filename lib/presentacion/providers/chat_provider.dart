@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:yesno_app/config/helpers/get_yesno_answer.dart';
 import 'package:yesno_app/domain/entities/message.dart';
 
 class ChatProvider extends ChangeNotifier{
 
   // Variable tipo "ScrollControlle" para realizar el scroll:
   final ScrollController chatScroll = ScrollController();
-
+  
+  // Instancia de la clase "ResponseGetApiYesNo"
+  final ResponseGetApiYesNo getYesNoAnswer = ResponseGetApiYesNo();
 
   // Lista de la clase "ClassMessage":
   List<ClassMessage> messageList = [
@@ -30,10 +33,20 @@ class ChatProvider extends ChangeNotifier{
     // Agregamos los nuevos mensajes a la lista "messageList"
     messageList.add(newMessage);
 
+    if(smsText.endsWith('?')) {
+      DoctorMessageReply();
+    }
+
     // Notificamos los cambios:
     notifyListeners();
     moveScrollBottom();
   }
+
+  // Metodo para la respuesta del Doctor con una imagen:
+  Future<void> DoctorMessageReply() async {
+    final docSms = await getYesNoAnswer.getAnswer();
+  }
+
 
   // Metodo para el Scroll:
   Future<void> moveScrollBottom() async {
