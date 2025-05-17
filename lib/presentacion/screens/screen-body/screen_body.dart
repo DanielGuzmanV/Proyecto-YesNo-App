@@ -13,8 +13,10 @@ class ScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Notificaremos los cambios:
-    final chatProviderChange = context.watch<ChatProvider>();
-
+    final ChatProvider chatProviderChange = context.watch<ChatProvider>();
+    // Actualizaremos la dimension del chat de acuerdo al length de la lista:
+    final int dimensionMessage = chatProviderChange.messageList.length;
+    
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -23,15 +25,19 @@ class ScreenBody extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            // Controlamos la dimension de los mensajes
-            itemCount: chatProviderChange.messageList.length,
-            itemBuilder: (context, index) {
+                // Scroll para el chat:
+                controller: chatProviderChange.chatScroll,
 
-              final messageValues = chatProviderChange.messageList[index];
-              
-              return (messageValues.fromWho == EnumFromWho.smsDoctor) 
-              ? const DocMessage()
-              : MyMessage(changeMessage: messageValues,);
+
+                // Controlamos la dimension de los mensajes
+                itemCount: dimensionMessage,
+                itemBuilder: (context, index) {
+
+                final ClassMessage messageValues = chatProviderChange.messageList[index];
+                
+                return (messageValues.fromWho == EnumFromWho.smsDoctor) 
+                ? const DocMessage()
+                : MyMessage(changeMessage: messageValues,);
             },
           )),
 
