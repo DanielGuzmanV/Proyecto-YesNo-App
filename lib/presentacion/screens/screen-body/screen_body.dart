@@ -36,7 +36,7 @@ class ScreenBody extends StatelessWidget {
                 final ClassMessage messageValues = chatProviderChange.messageList[index];
                 
                 return (messageValues.fromWho == EnumFromWho.smsDoctor) 
-                ? const DocMessage()
+                ? DocMessage(changeMessage: messageValues,)
                 : MyMessage(changeMessage: messageValues,);
             },
           )),

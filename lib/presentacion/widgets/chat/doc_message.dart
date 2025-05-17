@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:yesno_app/domain/entities/message.dart';
 
 class DocMessage extends StatelessWidget {
-  const DocMessage({super.key});
+  final ClassMessage changeMessage;
+
+  const DocMessage({
+    super.key, 
+    required this.changeMessage
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +23,18 @@ class DocMessage extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
 
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Mensaje del Doc',
-              style: TextStyle(color: Colors.white),
+              changeMessage.textMessage,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
 
         const SizedBox(height: 5),
         
-        _ImgMessage(),
+        _ImgMessage(changeMessage.imageUrl!),
 
         const SizedBox(height: 10),
       ],
@@ -39,6 +45,10 @@ class DocMessage extends StatelessWidget {
 
 // Clase para la imagen del lado del doctor:
 class _ImgMessage extends StatelessWidget {
+
+  final String resImgUrl;
+
+  const _ImgMessage(this.resImgUrl);
   @override
   Widget build(BuildContext context) {
 
@@ -48,7 +58,7 @@ class _ImgMessage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        "https://yesno.wtf/assets/no/22-8806dbccb1edf544723b7f095ff722e8.gif",
+        resImgUrl,
         width: sizeDevice.width * 0.7,
         height: 150,
         fit: BoxFit.cover,
