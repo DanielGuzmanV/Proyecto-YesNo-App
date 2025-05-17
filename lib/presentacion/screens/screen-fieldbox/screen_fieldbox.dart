@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ScreenFieldbox extends StatelessWidget {
-  const ScreenFieldbox({super.key});
+
+  final ValueChanged onValueText;
+
+  const ScreenFieldbox({
+    super.key, 
+    required this.onValueText
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +30,14 @@ class ScreenFieldbox extends StatelessWidget {
         filled: true,
         suffixIcon: IconButton(
             onPressed: () {
+
+              final textValue = customTextController.value.text;
               customTextController.clear();
+
+              onValueText(textValue);
             },
-            icon: const Icon(Icons.send_outlined)));
+            icon: const Icon(Icons.send_outlined))
+    );
 
     return TextFormField(
       // Cuando presionemos fuera del teclado este se cerrara
@@ -41,6 +52,7 @@ class ScreenFieldbox extends StatelessWidget {
       onFieldSubmitted: (value) {
         customTextController.clear();
         customFocusNode.requestFocus();
+        onValueText(value);
       },
     );
   }

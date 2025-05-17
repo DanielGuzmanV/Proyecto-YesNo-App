@@ -36,7 +36,9 @@ class ScreenBody extends StatelessWidget {
           )),
 
           // Se agregara la caja de texto para enviar mensajes:
-          const ScreenFieldbox(),
+          ScreenFieldbox(
+            onValueText: (value) => chatProviderChange.enviarMensajes(value),
+          ),
         ],
       ),
     ));

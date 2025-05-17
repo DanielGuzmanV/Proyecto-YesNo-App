@@ -18,9 +18,16 @@ class ChatProvider extends ChangeNotifier{
 
   // Metodo "Future" que enviar un mensaje "asincrono":
   Future<void> enviarMensajes(String smsText) async {
-    // Realizar implementacion:
-  }
+    final newMessage = ClassMessage(
+      textMessage: smsText, 
+      fromWho: EnumFromWho.smsMe
+    );
+    // Agregamos los nuevos mensajes a la lista "messageList"
+    messageList.add(newMessage);
 
+    // Notificamos los cambios:
+    notifyListeners();
+  }
 }
 
 
